@@ -1,0 +1,20 @@
+.header
+  %h1
+    Flickr Search
+  = form_tag flickr_search_path,remote: true, method: :get, class: 'search' do
+    = text_field_tag(:q)
+    = submit_tag('Search')
+.fk-thumbnails
+.lb-container
+  %h2
+    %span.lb-close
+      x
+    %span.lb-title
+  %img.lb-image
+  .lb-arrow.lb-prev
+    &lt;
+  .lb-arrow.lb-next
+    &gt;
+.pg-container
+  .pg-pager.pg-hidden
+    =link_to 'More', flickr_search_path, remote: true, class: 'more-photo'

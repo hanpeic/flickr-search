@@ -1,0 +1,16 @@
+<% if @page == 1 %>
+  $('.fk-thumbnails').empty();
+  $('.pg-pager').addClass('pg-hidden');
+<% end %>
+<% @photos_list.each do |photo| %>
+  var thumb = document.createElement("img");
+  thumb.className = 'fk-photo';
+  thumb.src = '<%= FlickRaw.url_q(photo) %>'
+  thumb.setAttribute('data-large', '<%= FlickRaw.url(photo) %>');
+  thumb.setAttribute('data-title', '<%= photo.title %>');
+  $('.fk-thumbnails').append(thumb);
+<% end %>
+<% if @page < @photos_list.pages %>
+  $('.pg-pager').removeClass('pg-hidden');
+  $('a.more-photo').attr('href', '<%= flickr_search_path(q: params[:q], page: @page + 1).html_safe %>');
+<% end %>
